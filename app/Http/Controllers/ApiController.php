@@ -19,6 +19,27 @@ class ApiController extends Controller
         return response()->json($users);
     }
 
+    public function topDomains()
+    {
+        $userEmails = User::pluck('email');
+
+        // Extract domains from emails
+        $domains = [];
+        foreach ($userEmails as $email) {
+            //Splits the email string into two parts based on the '@' character with explode function
+            [$username, $domain] = explode('@', $email);
+            $domains[] = $domain;
+        }
+
+        $domainCounts = array_count_values($domains);
+        arsort($domainCounts); // Sort descending
+
+        $topDomains = array_slice($domainCounts, 0, 3);
+
+        return response()->json($topDomains);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

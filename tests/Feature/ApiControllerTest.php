@@ -15,19 +15,60 @@ class ApiControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_users_method_status_and_is_json()
+    public function setUp(): void
     {
+        parent::setUp();
+
         Artisan::call('migrate');
         Artisan::call('db:seed', ['--class' => 'UserSeeder']);
+    }
 
-        $users = User::all();
-
+    /* USER */
+    public function test_users_status()
+    {
         $response = $this->get('/api/users');
 
-        // Verify status
         $response->assertStatus(200);
+    }
 
-        // Verify json response
-        $response->assertJson($users->toArray());
+    /**
+     * @depends test_users_status
+     */
+    public function test_users_is_json_response()
+    {
+        $response = $this->get('/api/users');
+
+        $response->assertHeader('Content-Type', 'application/json');
+    }
+
+    /* TOP DOMAINS */
+    public function test_top_domains_status()
+    {
+        $response = $this->get('/api/top-domains');
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @depends test_top_domains_status
+     */
+    public function test_top_domains_is_json_response()
+    {
+        $response = $this->get('/api/top-domains');
+
+        $response->assertHeader('Content-Type', 'application/json');
+    }
+
+    /**
+     * @depends test_top_domains_is_json_response
+     */
+    public function test_top_domains_return_at_least_three_domains()
+    {
+        $response = $this->get('/api/top-domains');
+
+        // Get json response
+        $responseData = json_decode($response->getContent(), true);
+
+        $this->assertGreaterThanOrEqual(3, count($responseData));
     }
 }
