@@ -22,10 +22,13 @@ class UserSeeder extends Seeder
 
         $emailExtensions = ['clicko.es', 'gmail.com', 'outlook.com', 'yahoo.com'];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i <= 20; $i++) {
             // Email random selection with array_rand func
             $randomExtension = $emailExtensions[array_rand($emailExtensions)];
-            $randomName = $faker->firstName;
+
+            //Concatenate a random number to avoid conflicts.
+            $randomName = $faker->firstName . rand(0, 99);
+
             $email = $randomName . '@' . $randomExtension;
 
             \App\Models\User::create([
