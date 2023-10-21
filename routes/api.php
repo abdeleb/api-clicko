@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [ApiController::class, 'users']);
 Route::get('/top-domains', [ApiController::class, 'topDomains']);
+Route::post('/create-user', [ApiController::class, 'createUser']);

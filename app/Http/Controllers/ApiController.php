@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -39,15 +40,35 @@ class ApiController extends Controller
         return response()->json($topDomains);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function createUser(UserStoreRequest $request)
     {
-        //
+        $data = $request->getContent();
+        $userData = json_decode($data, true);
+
+        // Using UserStoreRequest to validate data
+        try {
+            $user = User::create([
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'password' => bcrypt($userData['password']),
+            ]);
+
+            $response = [
+                'status' => 1,
+                'msg' => 'User created successfully',
+                'user' => $user,
+            ];
+
+            return response()->json($response, 201); // 201 = "Created"
+
+        } catch (\Exception $e) {
+            $response = [
+                'status' => 0,
+                'msg' => '¡Ups! An error occurred while creating the user: ' . $e->getMessage(),
+            ];
+
+            return response()->json($response, 500); // 500 = "Internal Server Error"
+        }
     }
 
     /**
