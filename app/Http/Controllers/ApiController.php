@@ -39,7 +39,6 @@ class ApiController extends Controller
         return response()->json($topDomains);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
