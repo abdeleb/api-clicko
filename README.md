@@ -59,8 +59,6 @@ Copia el archivo de entorno de ejemplo:
 cp .env.example .env
 ```
 
-<br>
-
 Edita el archivo .env con la configuración específica de tu proyecto, como las credenciales de la base de datos y cualquier otra variable de entorno necesaria. Por defecto se usará la configuración de Laravel Sail (Docker).
 
 <br>
@@ -171,7 +169,7 @@ Body:
 URL: http://localhost/api/register
 
 <br>
-<
+
 ### Login y Generación de Token de Acceso
 
 Endpoint: /login
@@ -255,7 +253,6 @@ Solicitud: Envía una solicitud GET con el ID del usuario como parte de la URL.
 URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario deseado).
 
 <br>
-<br>
 
 ### Editar los datos de un usuario específico
 
@@ -266,7 +263,6 @@ Solicitud: Envía una solicitud POST con el ID del usuario como parte de la URL 
 URL: http://localhost/api/user/edit/{id} (reemplaza {id} con el ID del usuario a editar).
 
 <br>
-<br>
 
 ### Borrar los datos de un usuario específico
 
@@ -276,7 +272,6 @@ Descripción: Borra todos los datos de un usuario específico según su ID.
 Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL.
 URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar).
 
-<br>
 <br>
 
 Asegúrate de incluir los datos necesarios en las solicitudes, como credenciales de autenticación o información de usuario, según corresponda.
