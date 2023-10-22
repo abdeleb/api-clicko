@@ -68,18 +68,26 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 
 <br>
 
-Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias (Si utiliza la flag "-d" ejecutará docker en segundo plano).
+Importa todos los paquetes utilizando composer
 
 ```sh
-./vendor/bin/sail up
+composer install
 ```
 
 <br>
 
-Importa todos los paquetes utilizando composer
+Genera tu propia clave (esta clave se añadirá en APP_KEY en tu .env)
 
 ```sh
-./vendor/bin/sail composer install
+php artisan key:generate
+```
+
+<br>
+
+Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias (Si utiliza la flag "-d" ejecutará docker en segundo plano).
+
+```sh
+./vendor/bin/sail up
 ```
 
 Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
