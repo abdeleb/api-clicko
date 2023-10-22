@@ -18,6 +18,11 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 | /api/user/edit/{id}   | POST   | Edita los datos de un usuario específico                 |
 | /api/user/{id}        | DELETE | Borra todos los datos de un usuario específico           |
 
+\
+\
+\
+\
+
 # Instalación
 
 ### Requisitos previos
