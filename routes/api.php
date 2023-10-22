@@ -22,8 +22,6 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
     Route::get('/{id}', [ApiController::class, 'showUser']);
     Route::post('/edit/{id}', [ApiController::class, 'updateUser']);
     Route::delete('/{id}', [ApiController::class, 'deleteUser']);
-
-    Route::get('/logout', [ApiAuthController::class, 'logout']);
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {

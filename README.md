@@ -1,66 +1,227 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Abdel Eb - FullStack Developer
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# _API Clicko - Technical test_
 
-## About Laravel
+Este README proporciona una guía sencilla para configurar y ejecutar la API. El proyecto lo he desarrollado con Sail Docker en entorno local.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# API Endpoints
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Endpoint              | Method | Info                                                     |
+| --------------------- | ------ | -------------------------------------------------------- |
+| /api/register         | POST   | Registro de usuario y genera token de acceso             |
+| /api/login            | POST   | Autenticación de usuario y genera token de acceso        |
+| /api/logout           | GET    | Sale de la sesión y borra los tokens de acceso.          |
+| /api/user/            | GET    | Muestra todos los usuarios de la tabla "users"           |
+| /api/user/top-domains | GET    | Muestra los top 3 dominios de correo junto a la cantidad |
+| /api/user/create      | POST   | Crea un usuario nuevo                                    |
+| /api/user/{id}        | GET    | Muestra los datos de un usuario específico               |
+| /api/user/edit/{id}   | POST   | Edita los datos de un usuario específico                 |
+| /api/user/{id}        | DELETE | Borra todos los datos de un usuario específico           |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Instalación
 
-## Learning Laravel
+### Requisitos previos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requisitos:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   [Docker](https://docs.docker.com/get-docker/)
+-   [Composer](https://getcomposer.org/download/)
+-   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
+-   PHP 8.0.2
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Clonar el repositorio
 
-## Laravel Sponsors
+Install the dependencies and devDependencies and start the server.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Clona este repositorio en tu máquina local:
 
-### Premium Partners
+```sh
+bash
+git clone https://github.com/abdeleb/api-clicko.git api-clicko-technical-test
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Accede al directorio del proyecto:
 
-## Contributing
+```sh
+bash
+cd api-clicko-technical-test
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Copia el archivo de entorno de ejemplo:
 
-## Code of Conduct
+```sh
+bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Edita el archivo .env con la configuración específica de tu proyecto, como las credenciales de la base de datos y cualquier otra variable de entorno necesaria. Por defecto se usará la configuración de Laravel Sail (Docker).
 
-## Security Vulnerabilities
+### Iniciar el entorno de desarrollo
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Copia el archivo de entorno de ejemplo:
 
-## License
+```sh
+bash
+./vendor/bin/sail up
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias.
+
+```sh
+bash
+./vendor/bin/sail composer install
+```
+
+Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
+
+### Migraciones y Seeders
+
+Ejecuta la migración de la base de datos
+
+```sh
+bash
+./vendor/bin/sail artisan migrate
+```
+
+Esto generará 20 usuarios de forma aleatoria.
+
+```sh
+bash
+./vendor/bin/sail artisan db:seed --class=UserSeeder
+```
+
+### Testing
+
+Para garantizar el correcto funcionamiento del proyecto, he desarrollado varios test por cada método disponible.
+
+Ejecuta el siguiente comando para iniciar los test
+
+```sh
+bash
+./vendor/bin/sail test
+```
+
+# Instrucciones para Interactuar con la API en Local
+
+Esta guia a través de la interacción con los endpoints de la API en tu entorno local utilizando Postman. Antes de realizar las siguientes solicitudes, asegúrate de que tu proyecto Laravel con Sail Docker esté en ejecución y tener abierto Postman Agent.
+
+Recuerda que para interactuar con la API debes autenticarte siguiendo los siguientes pasos:
+
+### Base URL
+
+La URL base para las solicitudes de autenticación en tu entorno local será: http://localhost/api/
+Una vez autentificado, la URL base será http://localhost/api/user/
+
+#### Header
+
+```
+{
+    "Accept" = "application/json",
+    "Content-Type" = "application/json",
+}
+```
+
+### Registro de usuario y generación de token de acceso
+
+Endpoint: /register
+Método: POST
+Descripción: Registra un nuevo usuario y genera un token de acceso. Si utilizas el token generado para iniciar sesión, no será necesario hacer login.
+Body:
+
+```
+{
+    "name" = "randomNameTest",
+    "email" = "randomNameTest@clicko.es",
+    "password" = "randompassword123"
+}
+```
+
+URL: http://localhost/api/register
+
+### Login y Generación de Token de Acceso
+
+Endpoint: /login
+Método: POST
+Descripción: Autenticación de usuario y genera un token de acceso.
+Body:
+
+```
+{
+    "email" = "randomNameTest@clicko.es",
+    "password" = "randompassword123"
+}
+```
+
+Nota: Copia el token generado.
+
+URL: http://localhost/api/login
+
+### Autenticación
+
+Una vez copiada el token generado en login/registro. Accede a "Authorization", selecciona Bearer Token en el menú desplegable Type y pega la clave token.
+
+### Cierre de sesión y eliminación de Tokens de Acceso
+
+Endpoint: /logout
+Método: GET
+Descripción: Cierra la sesión del usuario y automáticamente se eliminan todos los tokens de acceso asociados al usuario.
+Body:
+
+```
+{
+    "email" = "randomNameTest@clicko.es",
+    "password" = "randompassword123"
+}
+```
+
+URL: http://localhost/api/logout
+
+### Mostrar todos los usuarios
+
+Endpoint: /user/
+Método: GET
+Descripción: Muestra todos los usuarios de la tabla "users".
+Solicitud: Envía una solicitud GET para obtener la lista de usuarios registrados.
+URL: http://localhost/api/user/
+
+### Mostrar los Top 3 dominios de correo junto a la cantidad de forma descendiente
+
+Endpoint: /user/top-domains
+Método: GET
+Descripción: Muestra los tres dominios de correo más comunes junto con la cantidad de usuarios que los utilizan.
+Solicitud: Envía una solicitud GET para obtener los dominios de correo más comunes.
+URL: http://localhost/api/user/top-domains
+
+### Crear un usuario nuevo
+
+Endpoint: /user/create
+Método: POST
+Descripción: Crea un nuevo usuario en la base de datos.
+Solicitud: Envía una solicitud POST con los datos del nuevo usuario (por ejemplo, nombre, correo electrónico y contraseña).
+URL: http://localhost/api/user/create
+
+### Mostrarlos datos de un usuario específico
+
+Endpoint: /user/{id}
+Método: GET
+Descripción: Muestra los datos de un usuario específico según su ID.
+Solicitud: Envía una solicitud GET con el ID del usuario como parte de la URL.
+URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario deseado).
+
+### Editar los datos de un usuario específico
+
+Endpoint: /user/edit/{id}
+Método: POST
+Descripción: Edita los datos de un usuario específico según su ID.
+Solicitud: Envía una solicitud POST con el ID del usuario como parte de la URL y los datos actualizados del usuario.
+URL: http://localhost/api/user/edit/{id} (reemplaza {id} con el ID del usuario a editar).
+
+### Borrar los datos de un usuario específico
+
+Endpoint: /user/{id}
+Método: DELETE
+Descripción: Borra todos los datos de un usuario específico según su ID.
+Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL.
+URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar).
+
+¡Ahora puedes utilizar Postman para interactuar con la API de tu proyecto Laravel en tu entorno local! Asegúrate de incluir los datos necesarios en las solicitudes, como credenciales de autenticación o información de usuario, según corresponda.
