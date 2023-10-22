@@ -99,4 +99,19 @@ class ApiAuthControllerTest extends TestCase
         // Verify if user is authenticated
         $this->assertAuthenticated();
     }
+
+    /* LOG OUT */
+    /**
+     * @depends test_users_status
+     */
+    public function test_user_logout()
+    {
+        $response = $this->get('/api/logout');
+
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'message' => 'You have successfully logged out and the token was successfully deleted',
+        ]);
+    }
 }
