@@ -50,4 +50,11 @@ class ApiAuthController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return ['message' => 'You hace successfully logged out and the token was successfully deleted'];
+    }
 }

@@ -31,3 +31,7 @@ Route::group(array('prefix' => 'user'), function () {
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [ApiAuthController::class, 'logout']);
+});
