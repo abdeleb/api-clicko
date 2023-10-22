@@ -64,22 +64,22 @@ class ApiController extends Controller
         } catch (\Exception $e) {
             $response = [
                 'status' => 0,
-                'msg' => '¡Ups! An error occurred while creating the user: ' . $e->getMessage(),
+                'msg' => 'Ups! An error occurred while creating the user: ' . $e->getMessage(),
             ];
 
             return response()->json($response, 500); // 500 = "Internal Server Error"
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'Ups! User not found anywhere :('], 404);
+        }
+
+        return response()->json(['user' => $user], 200);
     }
 
     /**

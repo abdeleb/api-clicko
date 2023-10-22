@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/users', [ApiController::class, 'users']);
-Route::get('/top-domains', [ApiController::class, 'topDomains']);
-Route::post('/create-user', [ApiController::class, 'createUser']);
+Route::group(array('prefix' => 'user'), function () {
+    Route::get('/', [ApiController::class, 'users']);
+    Route::get('/{id}', [ApiController::class, 'show']);
+    Route::get('/top-domains', [ApiController::class, 'topDomains']);
+    Route::post('/create', [ApiController::class, 'createUser']);
+});
