@@ -74,6 +74,22 @@ class ApiControllerTest extends TestCase
         $this->assertGreaterThanOrEqual(3, count($responseData));
     }
 
+    /* SHOW USER */
+    public function test_can_get_user_by_id()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->get('/api/user/' . $user->id);
+
+        $response->assertStatus(200);
+
+        // Verify that the response is in JSON format.
+        $response->assertJsonStructure(['user' => ['id', 'name', 'email']]);
+
+        // Verify that the user data matches the response data.
+        $response->assertJson(['user' => ['id' => $user->id, 'name' => $user->name, 'email' => $user->email]]);
+    }
+
     /* CREATE USER */
     public function test_user_create_validation()
     {
@@ -226,4 +242,17 @@ class ApiControllerTest extends TestCase
     }
 
     /* DELETE */
+    /**
+     * @depends test_users_status
+     * @depends test_can_get_user_by_id
+     */
+    public function test_can_delete_user()
+    {
+        $user = User::factory()->create();
+
+        $this->delete('/api/user/' . $user->id);
+
+        // Verify that the user has removed from the db
+        $this->assertDatabaseMissing('users', ['id' => $user->id]);
+    }
 }

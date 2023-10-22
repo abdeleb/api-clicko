@@ -23,6 +23,7 @@ Route::group(array('prefix' => 'user'), function () {
     Route::get('/', [ApiController::class, 'users']);
     Route::get('/top-domains', [ApiController::class, 'topDomains']);
     Route::post('/create', [ApiController::class, 'createUser']);
-    Route::get('/{id}', [ApiController::class, 'show']);
+    Route::get('/{id}', [ApiController::class, 'showUser']);
     Route::post('/edit/{id}', [ApiController::class, 'updateUser']);
+    Route::delete('/{id}', [ApiController::class, 'deleteUser']);
 });

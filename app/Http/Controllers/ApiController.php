@@ -64,7 +64,7 @@ class ApiController extends Controller
 
     }
 
-    public function show($id)
+    public function showUser($id)
     {
         $user = User::find($id);
 
@@ -97,14 +97,22 @@ class ApiController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deleteUser($id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Ups! User not found',
+            ], 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'User successfully deleted',
+        ]);
     }
 }
