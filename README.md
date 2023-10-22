@@ -5,7 +5,6 @@
 Este README proporciona una guía sencilla para configurar y ejecutar la API. El proyecto lo he desarrollado con Sail Docker en entorno local.
 
 \
-\
 
 # API Endpoints
 
