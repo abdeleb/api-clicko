@@ -47,29 +47,21 @@ class ApiController extends Controller
         $userData = json_decode($data, true);
 
         // Using UserStoreRequest to validate data
-        try {
-            $user = User::create([
-                'name' => $userData['name'],
-                'email' => $userData['email'],
-                'password' => bcrypt($userData['password']),
-            ]);
+        $user = User::create([
+            'name' => $userData['name'],
+            'email' => $userData['email'],
+            'password' => bcrypt($userData['password']),
+        ]);
 
-            $response = [
-                'status' => 1,
-                'msg' => 'User created successfully',
-                'user' => $user,
-            ];
+        $response = [
+            'status' => 1,
+            'msg' => 'User created successfully',
+            'user' => $user,
+        ];
 
-            return response()->json($response, 201); // 201 = "Created"
+        return response()->json($response, 201); // 201 = "Created"
 
-        } catch (\Exception $e) {
-            $response = [
-                'status' => 0,
-                'msg' => 'Ups! An error occurred while creating the user: ' . $e->getMessage(),
-            ];
 
-            return response()->json($response, 500); // 500 = "Internal Server Error"
-        }
     }
 
     public function show($id)

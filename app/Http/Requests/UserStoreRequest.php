@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 
 class UserStoreRequest extends FormRequest
 {
@@ -28,5 +31,16 @@ class UserStoreRequest extends FormRequest
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = new JsonResponse([
+            'status' => 0,
+            'message' => 'Validation error',
+            'errors' => $validator->errors(),
+        ], 422); // Unprocessable entity
+
+        throw new HttpResponseException($response);
     }
 }

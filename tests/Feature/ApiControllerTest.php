@@ -120,11 +120,37 @@ class ApiControllerTest extends TestCase
 
         // Verify that the error message expected
         $response->assertJson([
-            'message' => 'The name field is required. (and 2 more errors)',
+            'status' => 0,
+            'message' => 'Validation error',
             'errors' => [
                 'name' => ['The name field is required.'],
                 'email' => ['The email must be a valid email address.'],
                 'password' => ['The password must be at least 8 characters.'],
+            ],
+        ]);
+    }
+
+    public function test_create_user_with_duplicate_email()
+    {
+        $existingUser = User::factory()->create();
+
+        $newUserData = [
+            'name' => 'NewUSer',
+            'email' => $existingUser->email, // Using equal email
+            'password' => 'randompassword123'
+        ];
+
+        // Make a POST request to CREATE the new user
+        $response = $this->post("/api/user/create", $newUserData);
+
+        $response->assertStatus(422);
+
+        // Verify if response has error msg
+        $response->assertJson([
+            'status' => 0,
+            'message' => 'Validation error',
+            'errors' => [
+                'email' => ['The email has already been taken.'],
             ],
         ]);
     }
@@ -174,4 +200,30 @@ class ApiControllerTest extends TestCase
             'message' => 'Ups! User not found',
         ]);
     }
+
+    public function test_update_user_with_duplicate_email()
+    {
+        $existingUser = User::factory()->create();
+
+        $newUserData = [
+            'name' => 'newUser',
+            'email' => $existingUser->email, // Using equal email
+        ];
+
+        // Make a POST request to edit the new user
+        $response = $this->post("/api/user/edit/{$existingUser->id}", $newUserData);
+
+        $response->assertStatus(422);
+
+        // Verify if response has error msg
+        $response->assertJson([
+            'status' => 0,
+            'message' => 'Validation error',
+            'errors' => [
+                'email' => ['The email has already been taken.'],
+            ],
+        ]);
+    }
+
+    /* DELETE */
 }
