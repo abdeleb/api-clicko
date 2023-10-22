@@ -22,7 +22,6 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 
 \
 \
-\
 
 # Instalación
 
