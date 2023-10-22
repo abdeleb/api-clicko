@@ -5,10 +5,6 @@
 Este README proporciona una guía sencilla para configurar y ejecutar la API. El proyecto lo he desarrollado con Sail Docker en entorno local.
 
 <br>
-<br>
-<br>
-<br>
-<br>
 
 # API Endpoints
 
@@ -24,8 +20,8 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 | /api/user/edit/{id}   | POST   | Edita los datos de un usuario específico                 |
 | /api/user/{id}        | DELETE | Borra todos los datos de un usuario específico           |
 
-\
-\
+<br>
+<br>
 
 # Instalación
 
@@ -37,7 +33,7 @@ Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requis
 -   [Composer](https://getcomposer.org/download/)
 -   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
 
-\
+<br>
 
 ### Clonar el repositorio
 
@@ -47,7 +43,7 @@ Clona este repositorio en tu máquina local:
 git clone https://github.com/abdeleb/api-clicko.git api-clicko-technical-test
 ```
 
-\
+<br>
 
 Accede al directorio del proyecto:
 
@@ -55,7 +51,7 @@ Accede al directorio del proyecto:
 cd api-clicko-technical-test
 ```
 
-\
+<br>
 
 Copia el archivo de entorno de ejemplo:
 
@@ -63,16 +59,16 @@ Copia el archivo de entorno de ejemplo:
 cp .env.example .env
 ```
 
-\
+<br>
 
 Edita el archivo .env con la configuración específica de tu proyecto, como las credenciales de la base de datos y cualquier otra variable de entorno necesaria. Por defecto se usará la configuración de Laravel Sail (Docker).
 
-\
-\
+<br>
+<br>
 
 ### Iniciar el entorno de desarrollo
 
-\
+<br>
 
 Copia el archivo de entorno de ejemplo:
 
@@ -80,26 +76,26 @@ Copia el archivo de entorno de ejemplo:
 ./vendor/bin/sail up
 ```
 
-\
+<br>
 
 Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias.
 
-\
+<br>
 
 ```sh
 ./vendor/bin/sail composer install
 ```
 
-\
+<br>
 
 Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
 
-\
-\
+<br>
+<br>
 
 ### Migraciones y Seeders
 
-\
+<br>
 
 Ejecuta la migración de la base de datos
 
@@ -109,20 +105,20 @@ Ejecuta la migración de la base de datos
 
 Esto generará 20 usuarios de forma aleatoria.
 
-\
+<br>
 
 ```sh
 ./vendor/bin/sail artisan db:seed --class=UserSeeder
 ```
 
-\
-\
+<br>
+<br>
 
 ### Testing
 
 Para garantizar el correcto funcionamiento del proyecto, he desarrollado varios test por cada método disponible.
 
-\
+<br>
 
 Ejecuta el siguiente comando para iniciar los test
 
@@ -130,8 +126,8 @@ Ejecuta el siguiente comando para iniciar los test
 ./vendor/bin/sail test
 ```
 
-\
-\
+<br>
+<br>
 
 # Instrucciones para Interactuar con la API en Local
 
@@ -139,14 +135,14 @@ Esta guia a través de la interacción con los endpoints de la API en tu entorno
 
 Recuerda que para interactuar con la API debes autenticarte siguiendo los siguientes pasos:
 
-\
+<br>
 
 ### Base URL
 
 La URL base para las solicitudes de autenticación en tu entorno local será: http://localhost/api/
 Una vez autentificado, la URL base será http://localhost/api/user/
 
-\
+<br>
 
 #### Header
 
@@ -157,8 +153,8 @@ Una vez autentificado, la URL base será http://localhost/api/user/
 }
 ```
 
-\
-\
+<br>
+<br>
 
 ### Registro de usuario y generación de token de acceso
 
@@ -177,8 +173,8 @@ Body:
 
 URL: http://localhost/api/register
 
-\
-\
+<br>
+<br>
 
 ### Login y Generación de Token de Acceso
 
@@ -198,15 +194,15 @@ Nota: Copia el token generado.
 
 URL: http://localhost/api/login
 
-\
-\
+<br>
+<br>
 
 ### Autenticación
 
 Una vez copiada el token generado en login/registro. Accede a "Authorization", selecciona Bearer Token en el menú desplegable Type y pega la clave token.
 
-\
-\
+<br>
+<br>
 
 ### Cierre de sesión y eliminación de Tokens de Acceso
 
@@ -224,8 +220,8 @@ Body:
 
 URL: http://localhost/api/logout
 
-\
-\
+<br>
+<br>
 
 ### Mostrar todos los usuarios
 
@@ -235,8 +231,8 @@ Descripción: Muestra todos los usuarios de la tabla "users".
 Solicitud: Envía una solicitud GET para obtener la lista de usuarios registrados.
 URL: http://localhost/api/user/
 
-\
-\
+<br>
+<br>
 
 ### Mostrar los Top 3 dominios de correo junto a la cantidad de forma descendiente
 
@@ -246,8 +242,8 @@ Descripción: Muestra los tres dominios de correo más comunes junto con la cant
 Solicitud: Envía una solicitud GET para obtener los dominios de correo más comunes.
 URL: http://localhost/api/user/top-domains
 
-\
-\
+<br>
+<br>
 
 ### Crear un usuario nuevo
 
@@ -257,8 +253,8 @@ Descripción: Crea un nuevo usuario en la base de datos.
 Solicitud: Envía una solicitud POST con los datos del nuevo usuario (por ejemplo, nombre, correo electrónico y contraseña).
 URL: http://localhost/api/user/create
 
-\
-\
+<br>
+<br>
 
 ### Mostrarlos datos de un usuario específico
 
@@ -268,8 +264,8 @@ Descripción: Muestra los datos de un usuario específico según su ID.
 Solicitud: Envía una solicitud GET con el ID del usuario como parte de la URL.
 URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario deseado).
 
-\
-\
+<br>
+<br>
 
 ### Editar los datos de un usuario específico
 
@@ -279,8 +275,8 @@ Descripción: Edita los datos de un usuario específico según su ID.
 Solicitud: Envía una solicitud POST con el ID del usuario como parte de la URL y los datos actualizados del usuario.
 URL: http://localhost/api/user/edit/{id} (reemplaza {id} con el ID del usuario a editar).
 
-\
-\
+<br>
+<br>
 
 ### Borrar los datos de un usuario específico
 
@@ -290,7 +286,7 @@ Descripción: Borra todos los datos de un usuario específico según su ID.
 Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL.
 URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar).
 
-\
-\
+<br>
+<br>
 
 Asegúrate de incluir los datos necesarios en las solicitudes, como credenciales de autenticación o información de usuario, según corresponda.
