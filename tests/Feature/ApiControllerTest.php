@@ -12,17 +12,23 @@ class ApiControllerTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function setUp(): void
     {
         parent::setUp();
 
         Artisan::call('migrate');
         Artisan::call('db:seed', ['--class' => 'UserSeeder']);
+
+        $user = User::factory()->create();
+
+        // Generate a Sanctum token and assign it to the user
+        $token = $user->createToken('auth_token');
+
+        $this->actingAs($user); // Global auth
+
+        // Set the token on the user instance to make it available in all tests
+        $user->currentAccessToken = $token;
     }
 
     /* USER */
