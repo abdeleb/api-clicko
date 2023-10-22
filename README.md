@@ -18,7 +18,6 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 | /api/user/edit/{id}   | POST   | Edita los datos de un usuario específico                 |
 | /api/user/{id}        | DELETE | Borra todos los datos de un usuario específico           |
 
-
 # Instalación
 
 ### Requisitos previos
@@ -36,21 +35,18 @@ Install the dependencies and devDependencies and start the server.
 Clona este repositorio en tu máquina local:
 
 ```sh
-bash
 git clone https://github.com/abdeleb/api-clicko.git api-clicko-technical-test
 ```
 
 Accede al directorio del proyecto:
 
 ```sh
-bash
 cd api-clicko-technical-test
 ```
 
 Copia el archivo de entorno de ejemplo:
 
 ```sh
-bash
 cp .env.example .env
 ```
 
@@ -61,14 +57,12 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 Copia el archivo de entorno de ejemplo:
 
 ```sh
-bash
 ./vendor/bin/sail up
 ```
 
 Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias.
 
 ```sh
-bash
 ./vendor/bin/sail composer install
 ```
 
@@ -79,14 +73,12 @@ Nota: En caso de requerir una configuración específica de Docker, puede hacerl
 Ejecuta la migración de la base de datos
 
 ```sh
-bash
 ./vendor/bin/sail artisan migrate
 ```
 
 Esto generará 20 usuarios de forma aleatoria.
 
 ```sh
-bash
 ./vendor/bin/sail artisan db:seed --class=UserSeeder
 ```
 
@@ -97,7 +89,6 @@ Para garantizar el correcto funcionamiento del proyecto, he desarrollado varios 
 Ejecuta el siguiente comando para iniciar los test
 
 ```sh
-bash
 ./vendor/bin/sail test
 ```
 
