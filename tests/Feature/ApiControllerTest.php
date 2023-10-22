@@ -26,7 +26,7 @@ class ApiControllerTest extends TestCase
     /* USER */
     public function test_users_status()
     {
-        $response = $this->get('/api/users');
+        $response = $this->get('/api/user/');
 
         $response->assertStatus(200);
     }
@@ -36,7 +36,7 @@ class ApiControllerTest extends TestCase
      */
     public function test_users_is_json_response()
     {
-        $response = $this->get('/api/users');
+        $response = $this->get('/api/user/');
 
         $response->assertHeader('Content-Type', 'application/json');
     }
@@ -44,7 +44,7 @@ class ApiControllerTest extends TestCase
     /* TOP DOMAINS */
     public function test_top_domains_status()
     {
-        $response = $this->get('/api/top-domains');
+        $response = $this->get('/api/user/top-domains');
 
         $response->assertStatus(200);
     }
@@ -54,7 +54,7 @@ class ApiControllerTest extends TestCase
      */
     public function test_top_domains_is_json_response()
     {
-        $response = $this->get('/api/top-domains');
+        $response = $this->get('/api/user/top-domains');
 
         $response->assertHeader('Content-Type', 'application/json');
     }
@@ -64,7 +64,7 @@ class ApiControllerTest extends TestCase
      */
     public function test_top_domains_return_at_least_three_domains()
     {
-        $response = $this->get('/api/top-domains');
+        $response = $this->get('/api/user/top-domains');
 
         // Get json response
         $responseData = json_decode($response->getContent(), true);
@@ -80,7 +80,7 @@ class ApiControllerTest extends TestCase
             'password' => 'password123',
         ];
 
-        $response = $this->json('POST', '/api/create-user', $data);
+        $response = $this->json('POST', '/api/user/create', $data);
 
         $response->assertStatus(201)
             ->assertJson([
@@ -103,7 +103,7 @@ class ApiControllerTest extends TestCase
             'password' => 'test', // Short password
         ];
 
-        $response = $this->json('POST', '/api/create-user', $data);
+        $response = $this->json('POST', '/api/user/create', $data);
 
         $response->assertStatus(422) // 422 = Unprocessable Entity
             ->assertJsonStructure([

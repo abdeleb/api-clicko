@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(array('prefix' => 'user'), function () {
     Route::get('/', [ApiController::class, 'users']);
-    Route::get('/{id}', [ApiController::class, 'show']);
     Route::get('/top-domains', [ApiController::class, 'topDomains']);
     Route::post('/create', [ApiController::class, 'createUser']);
+    Route::get('/{id}', [ApiController::class, 'show']);
 });
