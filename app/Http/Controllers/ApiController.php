@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserStoreRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserStoreRequest;
 
 class ApiController extends Controller
 {
@@ -82,16 +83,44 @@ class ApiController extends Controller
         return response()->json(['user' => $user], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Ups! User not found',
+            ], 404);
+        }
+
+        // Verificar si el correo electrónico y el nombre son idénticos a los datos actuales
+        if ($user->name === $request->name && $user->email === $request->email) {
+            return response()->json([
+                'status' => 0,
+                'message' => 'No changes detected',
+            ], 400);
+        }
+
+        // Verificar si el correo electrónico ya existe en otro usuario
+        $userExists = User::where('email', $request->email)->where('id', '!=', $id)->first();
+
+        if ($userExists) {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Email already exists',
+            ], 400);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'User successfully updated',
+            'user' => $user,
+        ]);
     }
 
     /**

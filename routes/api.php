@@ -24,4 +24,5 @@ Route::group(array('prefix' => 'user'), function () {
     Route::get('/top-domains', [ApiController::class, 'topDomains']);
     Route::post('/create', [ApiController::class, 'createUser']);
     Route::get('/{id}', [ApiController::class, 'show']);
+    Route::post('/edit/{id}', [ApiController::class, 'updateUser']);
 });
