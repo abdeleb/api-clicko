@@ -6,7 +6,7 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 
 <br>
 
-# API Endpoints
+## API Endpoints
 
 | Endpoint              | Method | Info                                                     |
 | --------------------- | ------ | -------------------------------------------------------- |
@@ -23,7 +23,7 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 <br>
 <br>
 
-# Instalación
+## Instalación
 
 ### Requisitos previos
 
@@ -129,7 +129,7 @@ Ejecuta el siguiente comando para iniciar los test
 <br>
 <br>
 
-# Instrucciones para Interactuar con la API en Local
+## Instrucciones para Interactuar con la API en Local
 
 Esta guia a través de la interacción con los endpoints de la API en tu entorno local utilizando Postman. Antes de realizar las siguientes solicitudes, asegúrate de que tu proyecto Laravel con Sail Docker esté en ejecución y tener abierto Postman Agent.
 
@@ -142,8 +142,6 @@ Recuerda que para interactuar con la API debes autenticarte siguiendo los siguie
 La URL base para las solicitudes de autenticación en tu entorno local será: http://localhost/api/
 Una vez autentificado, la URL base será http://localhost/api/user/
 
-<br>
-
 #### Header
 
 ```
@@ -153,7 +151,6 @@ Una vez autentificado, la URL base será http://localhost/api/user/
 }
 ```
 
-<br>
 <br>
 
 ### Registro de usuario y generación de token de acceso
@@ -174,8 +171,7 @@ Body:
 URL: http://localhost/api/register
 
 <br>
-<br>
-
+<
 ### Login y Generación de Token de Acceso
 
 Endpoint: /login
@@ -195,13 +191,11 @@ Nota: Copia el token generado.
 URL: http://localhost/api/login
 
 <br>
-<br>
 
 ### Autenticación
 
 Una vez copiada el token generado en login/registro. Accede a "Authorization", selecciona Bearer Token en el menú desplegable Type y pega la clave token.
 
-<br>
 <br>
 
 ### Cierre de sesión y eliminación de Tokens de Acceso
@@ -221,7 +215,6 @@ Body:
 URL: http://localhost/api/logout
 
 <br>
-<br>
 
 ### Mostrar todos los usuarios
 
@@ -231,7 +224,6 @@ Descripción: Muestra todos los usuarios de la tabla "users".
 Solicitud: Envía una solicitud GET para obtener la lista de usuarios registrados.
 URL: http://localhost/api/user/
 
-<br>
 <br>
 
 ### Mostrar los Top 3 dominios de correo junto a la cantidad de forma descendiente
@@ -243,7 +235,6 @@ Solicitud: Envía una solicitud GET para obtener los dominios de correo más com
 URL: http://localhost/api/user/top-domains
 
 <br>
-<br>
 
 ### Crear un usuario nuevo
 
@@ -253,7 +244,6 @@ Descripción: Crea un nuevo usuario en la base de datos.
 Solicitud: Envía una solicitud POST con los datos del nuevo usuario (por ejemplo, nombre, correo electrónico y contraseña).
 URL: http://localhost/api/user/create
 
-<br>
 <br>
 
 ### Mostrarlos datos de un usuario específico
