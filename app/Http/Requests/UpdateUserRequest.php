@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule as ValidationRule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -26,18 +28,18 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => [
-                'required',
-                'email',
-                ValidationRule::unique('users', 'email')->ignore($this->route('user')),
-            ],
+            'email' => 'required|email|unique:users,email,' . $this->route('user'), //Verifies that email field is unique, excluding the current user.
         ];
     }
 
-    public function messages()
+    protected function failedValidation(Validator $validator)
     {
-        return [
-            'email.unique' => 'The email address is already in use by another user.',
-        ];
+        $response = new JsonResponse([
+            'status' => 0,
+            'message' => 'Validation error',
+            'errors' => $validator->errors(),
+        ], 422); // Unprocessable entity
+
+        throw new HttpResponseException($response);
     }
 }

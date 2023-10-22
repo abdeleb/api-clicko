@@ -83,7 +83,7 @@ class ApiController extends Controller
         return response()->json(['user' => $user], 200);
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(UpdateUserRequest $request, $id)
     {
         $user = User::find($id);
 
@@ -92,24 +92,6 @@ class ApiController extends Controller
                 'status' => 0,
                 'message' => 'Ups! User not found',
             ], 404);
-        }
-
-        // Verificar si el correo electrónico y el nombre son idénticos a los datos actuales
-        if ($user->name === $request->name && $user->email === $request->email) {
-            return response()->json([
-                'status' => 0,
-                'message' => 'No changes detected',
-            ], 400);
-        }
-
-        // Verificar si el correo electrónico ya existe en otro usuario
-        $userExists = User::where('email', $request->email)->where('id', '!=', $id)->first();
-
-        if ($userExists) {
-            return response()->json([
-                'status' => 0,
-                'message' => 'Email already exists',
-            ], 400);
         }
 
         $user->name = $request->name;
