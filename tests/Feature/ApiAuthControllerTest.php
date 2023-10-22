@@ -43,7 +43,6 @@ class ApiAuthControllerTest extends TestCase
      */
     public function test_user_registration_and_token()
     {
-        // Datos de prueba para el nuevo usuario
         $userData = [
             'name' => 'TestUserName9939393939',
             'email' => 'TestUserName9939393939@clicko.es',
@@ -71,5 +70,33 @@ class ApiAuthControllerTest extends TestCase
             'name' => $userData['name'],
             'email' => $userData['email'],
         ]);
+    }
+
+    /* LOGIN */
+    /**
+     * @depends test_users_status
+     */
+    public function test_user_login()
+    {
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        $loginData = [
+            'email' => 'test@example.com',
+            'password' => 'password123',
+        ];
+
+        $response = $this->post('/api/login', $loginData);
+
+        // Verify that the response includes a success message
+        $response->assertJson([
+            'status' => 1,
+            'message' => "Welcome $user->name!",
+        ]);
+
+        // Verify if user is authenticated
+        $this->assertAuthenticated();
     }
 }

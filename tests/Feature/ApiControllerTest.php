@@ -180,7 +180,6 @@ class ApiControllerTest extends TestCase
     /* UPDATE USER */
     public function test_update_user_successfully()
     {
-        // Create user test
         $user = User::factory()->create();
 
         $newName = $this->faker->name;
@@ -208,7 +207,7 @@ class ApiControllerTest extends TestCase
 
     public function test_update_nonexistent_user()
     {
-        // Intentar actualizar un usuario que no existe
+        // Try to update a user that does not exist
         $response = $this->post("/api/user/edit/9999", [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
