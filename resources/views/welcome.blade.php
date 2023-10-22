@@ -418,7 +418,8 @@
 
             Thank you for this opportunity.<br><br>
 
-            <a href="https://laravel.com/docs/billing" class="underline">You can find the Github repository by clicking
+            <a href="https://github.com/abdeleb/api-clicko" class="underline">You can find the Github repository by
+              clicking
               here.</a>
           </div>
         </div>

@@ -90,6 +90,8 @@ Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descarg
 ./vendor/bin/sail up
 ```
 
+Desde este momento puede probar acceder a "http://localhost:80" para verificar que el repositorio se está ejecutando correctamente.
+
 Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
 
 <br>
