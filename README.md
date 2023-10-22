@@ -18,6 +18,7 @@ Este README proporciona una guía sencilla para configurar y ejecutar la API. El
 | /api/user/edit/{id}   | POST   | Edita los datos de un usuario específico                 |
 | /api/user/{id}        | DELETE | Borra todos los datos de un usuario específico           |
 
+
 # Instalación
 
 ### Requisitos previos
@@ -27,7 +28,6 @@ Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requis
 -   [Docker](https://docs.docker.com/get-docker/)
 -   [Composer](https://getcomposer.org/download/)
 -   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
--   PHP 8.0.2
 
 ### Clonar el repositorio
 
