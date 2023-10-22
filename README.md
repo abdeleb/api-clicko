@@ -2,7 +2,7 @@
 
 # _API Clicko - Technical test_
 
-Este README proporciona una guía sencilla para configurar y ejecutar la API. El proyecto lo he desarrollado con Sail Docker en entorno local.
+Este README proporciona una guía sencilla para configurar, ejecutar y hacer peticiones a la API. El proyecto lo he desarrollado con Docker utilizando el paquete de Laravel Sail.
 
 <br>
 
@@ -68,7 +68,7 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 
 <br>
 
-Copia el archivo de entorno de ejemplo:
+Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias (Si utiliza la flag "-d" ejecutará docker en segundo plano).
 
 ```sh
 ./vendor/bin/sail up
@@ -76,15 +76,11 @@ Copia el archivo de entorno de ejemplo:
 
 <br>
 
-Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias.
-
-<br>
+Importa todos los paquetes utilizando composer
 
 ```sh
 ./vendor/bin/sail composer install
 ```
-
-<br>
 
 Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
 
