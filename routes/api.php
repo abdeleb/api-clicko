@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,5 @@ Route::group(array('prefix' => 'user'), function () {
     Route::post('/edit/{id}', [ApiController::class, 'updateUser']);
     Route::delete('/{id}', [ApiController::class, 'deleteUser']);
 });
+
+Route::post('/register', [ApiAuthController::class, 'register']);
