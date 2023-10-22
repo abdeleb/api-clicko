@@ -4,12 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class ApiControllerTest extends TestCase
 {
     use RefreshDatabase;
+    use WithFaker;
     /**
      * A basic feature test example.
      *
@@ -72,6 +74,7 @@ class ApiControllerTest extends TestCase
         $this->assertGreaterThanOrEqual(3, count($responseData));
     }
 
+    /* CREATE USER */
     public function test_user_create_validation()
     {
         $data = [
@@ -123,6 +126,52 @@ class ApiControllerTest extends TestCase
                 'email' => ['The email must be a valid email address.'],
                 'password' => ['The password must be at least 8 characters.'],
             ],
+        ]);
+    }
+
+    /* UPDATE USER */
+    public function test_update_user_successfully()
+    {
+        // Create user test
+        $user = User::factory()->create();
+
+        $newName = $this->faker->name;
+        $newEmail = $this->faker->unique()->safeEmail;
+
+        // Make a POST request to update the user
+        $response = $this->post("/api/user/edit/{$user->id}", [
+            'name' => $newName,
+            'email' => $newEmail,
+        ]);
+
+        $response->assertStatus(200);
+
+        // Verify 200 successfully message
+        $response->assertJson([
+            'status' => 1,
+            'message' => 'User successfully updated',
+        ]);
+
+        // Verify that user data has been correctly updated in the database
+        $updatedUser = User::find($user->id);
+        $this->assertEquals($newName, $updatedUser->name);
+        $this->assertEquals($newEmail, $updatedUser->email);
+    }
+
+    public function test_update_nonexistent_user()
+    {
+        // Intentar actualizar un usuario que no existe
+        $response = $this->post("/api/user/edit/9999", [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+        ]);
+
+        $response->assertStatus(404);
+
+        //  Verify error message
+        $response->assertJson([
+            'status' => 0,
+            'message' => 'Ups! User not found',
         ]);
     }
 }
