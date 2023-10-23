@@ -33,7 +33,7 @@ Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requis
 -   [Composer](https://getcomposer.org/download/)
 -   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
 
-<br>
+<hr>
 
 ### Clonar el repositorio
 
@@ -172,7 +172,7 @@ Una vez autentificado, la URL base será http://localhost/api/user/
 Endpoint: /register \
 Método: POST \
 Descripción: Registra un nuevo usuario y genera un token de acceso. Si utilizas el token generado para iniciar sesión, no será necesario hacer login. \
-Body:  \
+Body:  
 
 ```
 {
