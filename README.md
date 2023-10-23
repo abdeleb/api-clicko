@@ -68,10 +68,10 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 
 <br>
 
-Importa todos los paquetes utilizando composer
+Importa el paquete de Laravel Sail
 
 ```sh
-composer install
+composer require laravel/sail --dev
 ```
 
 <br>
