@@ -68,11 +68,25 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 
 <br>
 
-Importa el paquete de Laravel Sail
+Creamos un contenedor que contiene PHP y Composer para instalar las dependencias
 
 ```sh
-composer require laravel/sail --dev
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php80-composer:latest \
+    composer install --ignore-platform-reqs
 ```
+
+<br>
+
+Arrancamos el contenedor y las imagenes:
+
+```sh
+./vendor/bin/sail up
+```
+Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias (Si utiliza la flag "-d" ejecutará docker en segundo plano).
 
 <br>
 
@@ -83,12 +97,6 @@ php artisan key:generate
 ```
 
 <br>
-
-Este paso puede llevar un tiempo en la primera ejecución, ya que Docker descargará las imágenes necesarias (Si utiliza la flag "-d" ejecutará docker en segundo plano).
-
-```sh
-./vendor/bin/sail up
-```
 
 Desde este momento puede probar acceder a "http://localhost:80" para verificar que el repositorio se está ejecutando correctamente.
 
@@ -272,11 +280,11 @@ URL: http://localhost/api/user/edit/{id} (reemplaza {id} con el ID del usuario a
 
 ### Borrar los datos de un usuario específico
 
-Endpoint: /user/{id}
-Método: DELETE
-Descripción: Borra todos los datos de un usuario específico según su ID.
-Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL.
-URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar).
+Endpoint: /user/{id} \
+Método: DELETE \
+Descripción: Borra todos los datos de un usuario específico según su ID. \
+Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL. \
+URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar). \
 
 <br>
 
