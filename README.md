@@ -115,13 +115,15 @@ Ejecuta la migración de la base de datos
 ./vendor/bin/sail artisan migrate
 ```
 
-Esto generará 20 usuarios de forma aleatoria.
-
 <br>
+
+Genera 20 usuarios de forma aleatoria para alimentar tu base de datos.
 
 ```sh
 ./vendor/bin/sail artisan db:seed --class=UserSeeder
 ```
+
+Nota: Puede utilizar "./vendor/bin/sail mysql" para interactuar con la base de datos o hacer la conexión con un gestor de db como TablePlus (recomendado por la documentación de Laravel).
 
 <br>
 <br>
@@ -167,10 +169,10 @@ Una vez autentificado, la URL base será http://localhost/api/user/
 
 ### Registro de usuario y generación de token de acceso
 
-Endpoint: /register
-Método: POST
-Descripción: Registra un nuevo usuario y genera un token de acceso. Si utilizas el token generado para iniciar sesión, no será necesario hacer login.
-Body:
+Endpoint: /register \
+Método: POST \
+Descripción: Registra un nuevo usuario y genera un token de acceso. Si utilizas el token generado para iniciar sesión, no será necesario hacer login. \
+Body:  \
 
 ```
 {
@@ -186,10 +188,10 @@ URL: http://localhost/api/register
 
 ### Login y Generación de Token de Acceso
 
-Endpoint: /login
-Método: POST
-Descripción: Autenticación de usuario y genera un token de acceso.
-Body:
+Endpoint: /login \
+Método: POST \
+Descripción: Autenticación de usuario y genera un token de acceso \
+Body: \
 
 ```
 {
@@ -198,7 +200,7 @@ Body:
 }
 ```
 
-Nota: Copia el token generado.
+Nota: Copia el token generado. \
 
 URL: http://localhost/api/login
 
@@ -212,10 +214,10 @@ Una vez copiada el token generado en login/registro. Accede a "Authorization", s
 
 ### Cierre de sesión y eliminación de Tokens de Acceso
 
-Endpoint: /logout
-Método: GET
-Descripción: Cierra la sesión del usuario y automáticamente se eliminan todos los tokens de acceso asociados al usuario.
-Body:
+Endpoint: /logout \
+Método: GET \
+Descripción: Cierra la sesión del usuario y automáticamente se eliminan todos los tokens de acceso asociados al usuario. \
+Body: \
 
 ```
 {
@@ -230,50 +232,50 @@ URL: http://localhost/api/logout
 
 ### Mostrar todos los usuarios
 
-Endpoint: /user/
-Método: GET
-Descripción: Muestra todos los usuarios de la tabla "users".
-Solicitud: Envía una solicitud GET para obtener la lista de usuarios registrados.
+Endpoint: /user/ \
+Método: GET \
+Descripción: Muestra todos los usuarios de la tabla "users". \
+Solicitud: Envía una solicitud GET para obtener la lista de usuarios registrados. \
 URL: http://localhost/api/user/
 
 <br>
 
 ### Mostrar los Top 3 dominios de correo junto a la cantidad de forma descendiente
 
-Endpoint: /user/top-domains
-Método: GET
-Descripción: Muestra los tres dominios de correo más comunes junto con la cantidad de usuarios que los utilizan.
-Solicitud: Envía una solicitud GET para obtener los dominios de correo más comunes.
+Endpoint: /user/top-domains \
+Método: GET \
+Descripción: Muestra los tres dominios de correo más comunes junto con la cantidad de usuarios que los utilizan. \
+Solicitud: Envía una solicitud GET para obtener los dominios de correo más comunes. \
 URL: http://localhost/api/user/top-domains
 
 <br>
 
 ### Crear un usuario nuevo
 
-Endpoint: /user/create
-Método: POST
-Descripción: Crea un nuevo usuario en la base de datos.
-Solicitud: Envía una solicitud POST con los datos del nuevo usuario (por ejemplo, nombre, correo electrónico y contraseña).
+Endpoint: /user/create \
+Método: POST \
+Descripción: Crea un nuevo usuario en la base de datos. \
+Solicitud: Envía una solicitud POST con los datos del nuevo usuario (por ejemplo, nombre, correo electrónico y contraseña). \
 URL: http://localhost/api/user/create
 
 <br>
 
 ### Mostrarlos datos de un usuario específico
 
-Endpoint: /user/{id}
-Método: GET
-Descripción: Muestra los datos de un usuario específico según su ID.
-Solicitud: Envía una solicitud GET con el ID del usuario como parte de la URL.
+Endpoint: /user/{id} \
+Método: GET \
+Descripción: Muestra los datos de un usuario específico según su ID. \
+Solicitud: Envía una solicitud GET con el ID del usuario como parte de la URL. \
 URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario deseado).
 
 <br>
 
 ### Editar los datos de un usuario específico
 
-Endpoint: /user/edit/{id}
-Método: POST
-Descripción: Edita los datos de un usuario específico según su ID.
-Solicitud: Envía una solicitud POST con el ID del usuario como parte de la URL y los datos actualizados del usuario.
+Endpoint: /user/edit/{id} \
+Método: POST \
+Descripción: Edita los datos de un usuario específico según su ID. \
+Solicitud: Envía una solicitud POST con el ID del usuario como parte de la URL y los datos actualizados del usuario. \
 URL: http://localhost/api/user/edit/{id} (reemplaza {id} con el ID del usuario a editar).
 
 <br>
