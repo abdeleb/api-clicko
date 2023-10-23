@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'login']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/logout', [ApiAuthController::class, 'logout']);
+});
+
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
     Route::get('/', [ApiController::class, 'users']);
     Route::get('/top-domains', [ApiController::class, 'topDomains']);
@@ -23,10 +30,3 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
     Route::post('/edit/{id}', [ApiController::class, 'updateUser']);
     Route::delete('/{id}', [ApiController::class, 'deleteUser']);
 });
-
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('/logout', [ApiAuthController::class, 'logout']);
-});
-
-Route::post('/register', [ApiAuthController::class, 'register']);
-Route::post('/login', [ApiAuthController::class, 'login']);
