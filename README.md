@@ -191,7 +191,7 @@ URL: http://localhost/api/register
 Endpoint: /login \
 Método: POST \
 Descripción: Autenticación de usuario y genera un token de acceso \
-Body: \
+Body: 
 
 ```
 {
@@ -217,7 +217,7 @@ Una vez copiada el token generado en login/registro. Accede a "Authorization", s
 Endpoint: /logout \
 Método: GET \
 Descripción: Cierra la sesión del usuario y automáticamente se eliminan todos los tokens de acceso asociados al usuario. \
-Body: \
+Body: 
 
 ```
 {
