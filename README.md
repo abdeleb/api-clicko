@@ -4,7 +4,7 @@
 
 Este README proporciona una guía sencilla para configurar, ejecutar y hacer peticiones a la API. El proyecto lo he desarrollado con Docker utilizando el paquete de Laravel Sail.
 
-<br>
+<hr>
 
 ## API Endpoints
 
@@ -33,7 +33,8 @@ Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requis
 -   [Composer](https://getcomposer.org/download/)
 -   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
 
-<hr>
+<br>
+<br>
 
 ### Clonar el repositorio
 
@@ -286,7 +287,7 @@ Endpoint: /user/{id} \
 Método: DELETE \
 Descripción: Borra todos los datos de un usuario específico según su ID. \
 Solicitud: Envía una solicitud DELETE con el ID del usuario como parte de la URL. \
-URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar). \
+URL: http://localhost/api/user/{id} (reemplaza {id} con el ID del usuario a eliminar). 
 
 <br>
 
