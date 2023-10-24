@@ -34,7 +34,6 @@ Antes de comenzar, asegúrate de que tu sistema cumple con los siguientes requis
 -   [Postman Agent](https://www.postman.com/downloads/postman-agent/)
 
 <br>
-<br>
 
 ### Clonar el repositorio
 
@@ -66,8 +65,6 @@ Edita el archivo .env con la configuración específica de tu proyecto, como las
 <br>
 
 ### Iniciar el entorno de desarrollo
-
-<br>
 
 Creamos un contenedor que contiene PHP y Composer para instalar las dependencias
 
@@ -104,11 +101,8 @@ Desde este momento puede probar acceder a "http://localhost:80" para verificar q
 Nota: En caso de requerir una configuración específica de Docker, puede hacerlo en el archivo docker-compose.yml.
 
 <br>
-<br>
 
 ### Migraciones y Seeders
-
-<br>
 
 Ejecuta la migración de la base de datos
 
@@ -126,7 +120,6 @@ Genera 20 usuarios de forma aleatoria para alimentar tu base de datos.
 
 Nota: Puede utilizar "./vendor/bin/sail mysql" para interactuar con la base de datos o hacer la conexión con un gestor de db como TablePlus (recomendado por la documentación de Laravel).
 
-<br>
 <br>
 
 ### Testing
@@ -201,7 +194,7 @@ Body:
 }
 ```
 
-Nota: Copia el token generado. \
+Nota: Copia el token generado. 
 
 URL: http://localhost/api/login
 
@@ -218,15 +211,6 @@ Una vez copiada el token generado en login/registro. Accede a "Authorization", s
 Endpoint: /logout \
 Método: GET \
 Descripción: Cierra la sesión del usuario y automáticamente se eliminan todos los tokens de acceso asociados al usuario. \
-Body: 
-
-```
-{
-    "email" = "randomNameTest@clicko.es",
-    "password" = "randompassword123"
-}
-```
-
 URL: http://localhost/api/logout
 
 <br>
